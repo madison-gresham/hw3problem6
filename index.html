@@ -378,25 +378,38 @@
 
     // Complete this function:
     function showEditDialog(userId) {
+      var usernameedit = document.getElementById("username-edit");
+      var salaryedit = document.getElementById("salary-edit");
+      for (var i = 0; i < data.length; i++) {
+        if (data[i]._id == userId) {
+          usernameedit.value = data[i].name;
+          salaryedit.value = data[i].salary;
+        }
+      }
       editUserDialogModal.toggle(); 
-      var user = data._id == userId;
-      document.getElementById('username-edit').value = user.name;
-      document.getElementById('salary-edit').value = user.salary;
+      editForm._id = userId;
     }
 
     // Complete this function:
     function updateUser() {
-      document.getElementById('username-edit').value
-      document.getElementById('salary-edit').value
+      var salaryedit = document.getElementById("salary-edit").value;
+      for (var i = 0; i < data.length; i++) {
+        if (data[i]._id == editForm._id) {
+          data[i].salary = salaryedit;
+        }
+      }
+      showUsers();
       editUserDialogModal.toggle(); 
     }
 
     // Complete this function:
     function del(userId) {
-      var index = data.indexOf((user)=> {
-        return user._id == userId;
-       });
-      data.splice(index,1);
+      for (var i = 0; i < data.length; i++) {
+        if (data[i]._id == userId) {
+          var index = data.indexOf(data[i]);
+          data.splice(index,1);
+        }
+      }
       showUsers();
       } 
 
